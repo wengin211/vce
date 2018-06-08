@@ -86,12 +86,12 @@ function createadiv(ans){
 </head>
 <body>
 <?php
-$dbhost = getenv("OPENSHIFT_MYSQL_DB_HOST");
-$dbport = getenv("OPENSHIFT_MYSQL_DB_PORT");
-$dbuser = getenv("OPENSHIFT_MYSQL_DB_USERNAME");
-$dbpwd = getenv("OPENSHIFT_MYSQL_DB_PASSWORD");
-$dbname = getenv("OPENSHIFT_MYSQL_DB_NAME");
-$connection = mysqli_connect($dbhost.":".$dbport, $dbuser, $dbpwd);
+$dbhost = getenv("MYSQL_SERVICE_SERVICE_HOST");
+$dbport = getenv("MYSQL_SERVICE_SERVICE_PORT");
+$dbuser = 'root';
+$dbpwd = getenv("MYSQL_ROOT_PASSWORD");
+$dbname = getenv("MYSQL_DATABASE");
+$connection = mysql_connect($dbhost.":".$dbport, $dbuser, $dbpwd);
 if (!$connection) {
   echo "Could not connect to database";
 } else {
