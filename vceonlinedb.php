@@ -87,13 +87,13 @@ function createadiv(ans){
 <body>
 <?php
 	define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
-	define('DB_PORT', getenv('OPENSHIFT_MYSQL_DB_PORT'));
-	define('DB_USER', getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
-	define('DB_PASS', getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
-	define('DB_NAME', getenv('OPENSHIFT_APP_NAME'));
+	define('DB_PORT',getenv('OPENSHIFT_MYSQL_DB_PORT')); 
+	define('DB_USER',getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
+	define('DB_PASS',getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
+	define('DB_NAME',getenv('OPENSHIFT_GEAR_NAME'));
 
-	$mysqlCon = mysqli_connect(getenv('OPENSHIFT_MYSQL_DB_HOST'), getenv('OPENSHIFT_MYSQL_DB_USERNAME'), getenv('OPENSHIFT_MYSQL_DB_PASSWORD'), "", getenv('OPENSHIFT_MYSQL_DB_PORT')) or die("Error: " . mysqli_error($mysqlCon));
-	mysqli_select_db($mysqlCon, getenv('OPENSHIFT_APP_NAME')) or die("Error: " . mysqli_error($mysqlCon));
+	$dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.';port='.DB_PORT;
+	$dbh = new PDO($dsn, DB_USER, DB_PASS);
 ?>
 <!-- <input type='file' accept='text/plain' onchange='openFile(event)'><br> -->
 <!--<p id='output'></p>-->
