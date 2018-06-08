@@ -86,14 +86,24 @@ function createadiv(ans){
 </head>
 <body>
 <?php
-	define('DB_HOST', getenv('OPENSHIFT_MYSQL_DB_HOST'));
-	define('DB_PORT',getenv('OPENSHIFT_MYSQL_DB_PORT')); 
-	define('DB_USER',getenv('OPENSHIFT_MYSQL_DB_USERNAME'));
-	define('DB_PASS',getenv('OPENSHIFT_MYSQL_DB_PASSWORD'));
-	define('DB_NAME',getenv('OPENSHIFT_GEAR_NAME'));
-
-	$dsn = 'mysql:dbname='.DB_NAME.';host='.DB_HOST.';port='.DB_PORT;
-	$dbh = new PDO($dsn, DB_USER, DB_PASS);
+$dbhost = getenv("OPENSHIFT_EXTMYSQL_DB_HOST");
+$dbport = getenv("OPENSHIFT_EXTMYSQL_DB_PORT");
+$dbuser = getenv("OPENSHIFT_EXTMYSQL_DB_USERNAME");
+$dbpwd = getenv("OPENSHIFT_EXTMYSQL_DB_PASSWORD");
+$dbname = getenv("OPENSHIFT_EXTMYSQL_DB_NAME");
+$connection = mysql_connect($dbhost.":".$dbport, $dbuser, $dbpwd);
+if (!$connection) {
+  echo "Could not connect to database";
+} else {
+  echo "Connected to database.<br>";
+}
+$dbconnection = mysql_select_db($dbname);
+$query = "SELECT * from users";
+$rs = mysql_query($query);
+while ($row = mysql_fetch_assoc($rs)) {
+  echo $row['user_id'] . " " . $row['username'] . "\n";
+}
+mysql_close();
 ?>
 <!-- <input type='file' accept='text/plain' onchange='openFile(event)'><br> -->
 <!--<p id='output'></p>-->
