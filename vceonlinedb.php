@@ -86,9 +86,9 @@ function createadiv(ans){
 </head>
 <body>
 <?php
-$dbhost = '127.0.0.1';
+$dbhost = getenv("MYSQL_SERVICE_HOST");
 $dbport = getenv("MYSQL_SERVICE_PORT");
-$dbuser = getenv("MYSQL_USER");
+$dbuser = 'wengin211';
 $dbpwd = getenv("MYSQL_PASSWORD");
 $dbname = getenv("MYSQL_DATABASE");
 $connection = mysqli_connect($dbhost.":".$dbport, $dbuser, $dbpwd);
