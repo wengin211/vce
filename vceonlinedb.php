@@ -91,11 +91,6 @@ $dbport = getenv("MYSQL_SERVICE_PORT");
 $dbuser = getenv("MYSQL_USER");
 $dbpwd = getenv("MYSQL_PASSWORD");
 $dbname = getenv("MYSQL_DATABASE");
-	echo"$dbhost";
-	echo"$dbport";
-	echo"dbuser";
-	echo"dbpwd";
-	echo"$dbname";
 $connection = mysqli_connect($dbhost.":".$dbport, $dbuser, $dbpwd);
 if (!$connection) {
   echo "Could not connect to database";
