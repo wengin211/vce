@@ -39,20 +39,29 @@
 							else{
 								echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled>".$row[$answerchoice]."<br>";
 							}
-						++$answerchoice;
+							++$answerchoice;
 						}
 						else{
 							$choi = unserialize($choice);
-							for($i=0;$i<$row["answerno"];++$answerchoice){
-								for($j=0;$j<sizeof($choi);++$j,++$i){
-									if(in_array($choi[$i],$answer)){
-										if($choi[$i]==$answerchoice){
-											echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled checked><b><font color ='green'>".$row[$answerchoice]."</font></b><br>";
-											break;
-										}							
+							for($i=0;$i<$row["answerno"];++$i,++$answerchoice){
+								if(in_array($answerchoice,$choi)){
+									if(in_array($answerchoice,$answer)){
+										echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled checked><b><font color='green'>".$row[$answerchoice]."</font></b><br>";
+									}
+									else{
+										echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled checked><b><font color='red'>".$row[$answerchoice]."</font></b><br>";
 									}
 								}
-							}
+								else{
+									if(in_array($answerchoice,$answer)){
+										echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled><b><font color='green'>".$row[$answerchoice]."</font></b><br>";
+									}
+									else{
+										echo "<input type='checkbox' id='".$row[$answerchoice]."' name='".$row["QID"]."[]' value='".$row[$answerchoice]."' disabled>".$row[$answerchoice]."<br>";
+									}
+								}
+								
+							}	
 						}	
 					}
 				}
